@@ -13,6 +13,8 @@
     <div class="demo">Other</div>
     <div class="demo">Side</div>
 
+    <input type="text" id="date">
+
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
     <script>
       $(document).ready(function () {
@@ -20,6 +22,36 @@
         console.log(divs);
         for (let item of divs) {
           console.log(item);
+        }
+
+        $('#date').change(function() {
+          date_changed(this.value, this);
+        })
+
+        function date_changed(value, element) {   
+          var from = value.split("/");  
+            var day = from[0];
+            var month = from[1];
+            var year = from[2];
+            var age = 18;
+
+            var mydate = new Date();
+            mydate.setFullYear(year, month-1, day);
+
+            var currdate = new Date();
+            var setDate = new Date();
+
+            setDate.setFullYear(mydate.getFullYear(), month-1, day);
+
+            console.log(currdate);
+            console.log(setDate);
+            console.log((setDate - currdate));
+
+            if ((setDate - currdate) > 0){
+                return true;
+            }else{
+                return false;
+            }
         }
       });
     </script>
